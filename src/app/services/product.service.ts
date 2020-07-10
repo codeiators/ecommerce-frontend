@@ -8,11 +8,19 @@ import { ProductCategory } from '../common/product-category';
   providedIn: 'root'
 })
 export class ProductService {
+  
 
   private baseUrl="http://localhost:8080/api/products";
   private categoryUrl="http://localhost:8080/api/product-category";
 
   constructor(private httpClient:HttpClient) { }
+
+  searchProducts(theKeyword: string) {
+    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
+    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
+      map(response => response._embedded.products)
+    );
+  }
 
   getProductList(categoryId:number):Observable<Product[]>
   {
