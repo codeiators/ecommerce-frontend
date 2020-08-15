@@ -109,4 +109,8 @@ updatePageSize(pageSize:number)
   this.thePageNumber=1;
   this.listProducts();
 }
+addToCart(theProduct:Product)
+{
+  console.log(`Adding to Cart: ${theProduct.name}, ${theProduct.unitPrice}`);
+}
 }
